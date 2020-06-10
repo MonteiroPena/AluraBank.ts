@@ -1,9 +1,4 @@
 class NegociacoesView extends View {
-    // pega o resultado do template(), vai atribuir na propriedade innerHTML que vai converter automaticamente em elemento do doom
-    updadte(model) {
-        this._elemento.innerHTML = this.template(model);
-    }
-    // define o que eu quero exibir para o usuario
     template(model) {
         return `
     <table class="table table-hover table-bordered">
