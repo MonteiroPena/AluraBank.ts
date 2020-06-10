@@ -1,7 +1,4 @@
-class NegociacoesView {
-    constructor(seletor) {
-        this._elemento = document.querySelector(seletor);
-    }
+class NegociacoesView extends View {
     // pega o resultado do template(), vai atribuir na propriedade innerHTML que vai converter automaticamente em elemento do doom
     updadte(model) {
         this._elemento.innerHTML = this.template(model);
