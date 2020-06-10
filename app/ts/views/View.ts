@@ -1,5 +1,5 @@
 /* Quando vc tem uma classe que tem "um burraco" que alguem precisa implementar e que essa classe não faz sentido alguem criar-la diretamente, vc pode usar o modificador ABSTRACT = ela nao deixa vc criar uma instancia */
-abstract class View<T> {
+export abstract class View<T> {
   protected _elemento: JQuery;
 
   constructor(seletor: string) {

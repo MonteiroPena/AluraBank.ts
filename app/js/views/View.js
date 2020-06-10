@@ -1,10 +1,19 @@
-/* Quando vc tem uma classe que tem "um burraco" que alguem precisa implementar e que essa classe não faz sentido alguem criar-la diretamente, vc pode usar o modificador ABSTRACT = ela nao deixa vc criar uma instancia */
-class View {
-    constructor(seletor) {
-        this._elemento = $(seletor);
-    }
-    /* Pega o resultado do template(), vai atribuir na propriedade innerHTML que vai converter automaticamente em elemento do doom */
-    update(model) {
-        this._elemento.html(this.template(model));
-    }
-}
+System.register([], function (exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var View;
+    return {
+        setters: [],
+        execute: function () {
+            View = class View {
+                constructor(seletor) {
+                    this._elemento = $(seletor);
+                }
+                update(model) {
+                    this._elemento.html(this.template(model));
+                }
+            };
+            exports_1("View", View);
+        }
+    };
+});
