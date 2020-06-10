@@ -1,4 +1,5 @@
-class View<T> {
+//quando vc tem uma classe que tem "um burraco" que alguem precisa implementar e que essa classe não faz sentido alguem criar-la diretamente, vc pode usar o modificador ABSTRACT = ela nao deixa vc criar uma instancia
+abstract class View<T> {
   protected _elemento: Element;
 
   constructor(seletor: string) {
@@ -10,7 +11,5 @@ class View<T> {
     this._elemento.innerHTML = this.template(model);
   }
   // define o que eu quero exibir para o usuario
-  template(model: T): string {
-    throw new Error("Você deve implementar o método template");
-  }
+  abstract template(model: T): string;
 }
