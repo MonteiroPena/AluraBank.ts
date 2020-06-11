@@ -1,6 +1,7 @@
 import { NegociacoesView, MensagemView } from "../views/index";
-import { Negociacoes, Negociacao } from "../models/index";
-import { domInject } from "../helpers/decorators/index";
+import { Negociacoes, Negociacao, NegociacaoParcial } from "../models/index";
+import { domInject, throttle } from "../helpers/decorators/index";
+import { NegociacaoService } from "../services/index";
 
 export class NegociacaoController {
   @domInject("#data")
@@ -14,6 +15,7 @@ export class NegociacaoController {
   private _negociacoes = new Negociacoes();
   private _negociacoesView = new NegociacoesView("#negociacoesView", true); // true "ativa" o escapar do View.ts = que desativa todas as tags scripts da string que vai pro template
   private _mensagemView = new MensagemView("#mensagemView");
+  private _service = new NegociacaoService();
 
   constructor() {
     /* this._inputData = $("#data");
@@ -22,9 +24,8 @@ export class NegociacaoController {
     this._negociacoesView.update(this._negociacoes);
   }
 
-  adiciona(event: Event) {
-    event.preventDefault();
-
+  @throttle()
+  adiciona() {
     let data = new Date(this._inputData.val().replace(/-/g, ","));
 
     if (!this._ehDiaUtil(data)) {
@@ -50,6 +51,25 @@ export class NegociacaoController {
       data.getDay() != DiaDaSemana.Sabado &&
       data.getDay() != DiaDaSemana.Domingo
     );
+  }
+
+  /* consumindo api */
+  @throttle()
+  importaDados() {
+    this._service
+      .obterNegociacoes((res) => {
+        if (res.ok) {
+          return res;
+        } else {
+          throw new Error(res.statusText);
+        }
+      })
+      .then((negociacoes) => {
+        negociacoes.forEach((negociacao) =>
+          this._negociacoes.adiciona(negociacao)
+        );
+        this._negociacoesView.update(this._negociacoes);
+      });
   }
 }
 
