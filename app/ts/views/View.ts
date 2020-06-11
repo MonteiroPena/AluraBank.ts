@@ -1,3 +1,5 @@
+import { logarTempoDeExecucao } from "../helpers/decorators/index";
+
 /* Quando vc tem uma classe que tem "um burraco" que alguem precisa implementar e que essa classe não faz sentido alguem criar-la diretamente, vc pode usar o modificador ABSTRACT = ela nao deixa vc criar uma instancia */
 export abstract class View<T> {
   protected _elemento: JQuery;
@@ -7,7 +9,7 @@ export abstract class View<T> {
     this._elemento = $(seletor);
     this._escapar = escapar;
   }
-
+  @logarTempoDeExecucao()
   /* Pega o resultado do template(), vai atribuir na propriedade innerHTML que vai converter automaticamente em elemento do doom */
   update(model: T) {
     let template = this.template(model);

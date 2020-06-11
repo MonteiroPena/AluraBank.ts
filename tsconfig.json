@@ -6,7 +6,8 @@
     "noImplicitAny": true,
     "removeComments": true,
     "module": "System",
-    "strictNullChecks": true /* nesse modo "null" e "undefned" não fazem parte do dominio dos tipo e só podem ser atribuidos a eles mesmos. */
+    "strictNullChecks": true, /* nesse modo "null" e "undefned" não fazem parte do dominio dos tipo e só podem ser atribuidos a eles mesmos. */
+    "experimentalDecorators": true /* permite utilizar decorators */
   },
   "include": [
     "app/ts/**/*"

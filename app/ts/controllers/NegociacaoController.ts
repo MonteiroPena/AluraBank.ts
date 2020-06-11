@@ -1,17 +1,24 @@
 import { NegociacoesView, MensagemView } from "../views/index";
 import { Negociacoes, Negociacao } from "../models/index";
+import { domInject } from "../helpers/decorators/index";
+
 export class NegociacaoController {
+  @domInject("#data")
   private _inputData: JQuery;
+
+  @domInject("#quantidade")
   private _inputQuantidade: JQuery;
+
+  @domInject("#valor")
   private _inputValor: JQuery;
   private _negociacoes = new Negociacoes();
   private _negociacoesView = new NegociacoesView("#negociacoesView", true); // true "ativa" o escapar do View.ts = que desativa todas as tags scripts da string que vai pro template
   private _mensagemView = new MensagemView("#mensagemView");
 
   constructor() {
-    this._inputData = $("#data");
+    /* this._inputData = $("#data");
     this._inputQuantidade = $("#quantidade");
-    this._inputValor = $("#valor");
+    this._inputValor = $("#valor"); */
     this._negociacoesView.update(this._negociacoes);
   }
 
