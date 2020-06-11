@@ -5,7 +5,8 @@
     "noEmitOnError": true,
     "noImplicitAny": true,
     "removeComments": true,
-    "module": "System"
+    "module": "System",
+    "strictNullChecks": true /* nesse modo "null" e "undefned" não fazem parte do dominio dos tipo e só podem ser atribuidos a eles mesmos. */
   },
   "include": [
     "app/ts/**/*"
